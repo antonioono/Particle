@@ -13,6 +13,10 @@ app.get("/static/scripts/:staticFilename", function (req, res) {
   res.sendfile("static/scripts/" + req.params.staticFilename);
 });
 
+app.get("/static/scripts/lib/:staticFilename", function (req, res) {
+  res.sendfile("static/scripts/" + req.params.staticFilename);
+});
+
 app.get("/static/style/:staticFilename", function (req, res) {
   res.sendfile("static/style/" + req.params.staticFilename);
 });
