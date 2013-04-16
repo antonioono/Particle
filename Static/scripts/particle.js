@@ -14,16 +14,10 @@ $(document).ready(function(){
     
     $(document).mousemove(function(event){
         if (drag) {
-            var offset = $(content).offset(),
-                dragH = dragged.outerHeight(),
-                dragW = dragged.outerWidth(),
-                posY = offset.top  + dragH - event.pageY,
-                posX = offset.left + dragW - event.pageX;
-            console.log(event.pageY, posY, dragH,
-                        event.pageY + posY - dragH)
+            var offset = $(content).offset();
             $(dragged).offset({
-                top:  event.pageY + posY - dragH,
-                left: event.pageX + posX - dragW
+                top:  event.pageY,
+                left: event.pageX
             })
         }
     })
