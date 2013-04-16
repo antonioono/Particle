@@ -3,9 +3,13 @@ $(document).ready(function(){
         "src" : "http://placekitten.com/100"
     })
     
+    drag(content);
+})
+
+function drag(item) {
     var drag, dragged;
         
-    $(content).mousedown(function(event){
+    $(item).mousedown(function(event){
         drag = true;
         dragged = $(this);
         event.preventDefault();
@@ -13,7 +17,7 @@ $(document).ready(function(){
     
     $(document).mousemove(function(event){
         if (drag) {
-            var offset = $(content).offset();
+            var offset = $(item).offset();
             $(dragged).offset({
                 top:  event.pageY,
                 left: event.pageX
@@ -25,5 +29,6 @@ $(document).ready(function(){
         drag = false;
     })
     
-    $("body").append(content);
-})
+    $("body").append(item);
+
+}
