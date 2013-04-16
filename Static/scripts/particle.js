@@ -1,7 +1,6 @@
 $(document).ready(function(){
     var content = $("<img>").attr({
-        "src" : "http://placekitten.com/100",
-        "style" : "padding-top: 10em;"
+        "src" : "http://placekitten.com/100"
     })
     
     var drag, dragged;
