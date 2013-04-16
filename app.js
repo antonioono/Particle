@@ -14,7 +14,7 @@ app.get("/static/scripts/:staticFilename", function (req, res) {
 });
 
 app.get("/static/scripts/lib/:staticFilename", function (req, res) {
-  res.sendfile("static/scripts/" + req.params.staticFilename);
+  res.sendfile("static/scripts/lib/" + req.params.staticFilename);
 });
 
 app.get("/static/style/:staticFilename", function (req, res) {
