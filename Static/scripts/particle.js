@@ -1,13 +1,28 @@
 $(document).ready(function(){
-    var content = $("<img>").attr({
-        "src" : "http://placekitten.com/100"
-    })
+    var cats = 3;
     
-    drag(content);
+    function catImage(n) {
+        var images = [];
+        for (var i = 0; i < n; i++) {
+            images.push($("<img>").attr({
+                "src" : "http://placekitten.com/" + (100 + n)
+            }))
+        }
+        return images;
+    }
+    
+    for (var i = 0; i < cats; i++) {
+        $("#space").append(catImage(cats)[i]);
+        // drag(catImage(cats)[i]);
+    }
+    
+    drag();
 })
 
-function drag(item) {
+function drag() {
     var drag, dragged;
+    
+    var item = $("img");
         
     $(item).mousedown(function(event){
         drag = true;
@@ -28,7 +43,4 @@ function drag(item) {
     $(document).mouseup(function(){
         drag = false;
     })
-    
-    $("body").append(item);
-
 }
