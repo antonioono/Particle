@@ -1,28 +1,86 @@
 $(document).ready(function(){
-    var cats = 3;
+    var data = [
+        {
+            "type":"image",
+            "source":"http://placekitten.com/233"
+        },
+        {
+            "type":"image",
+            "source":"http://placekitten.com/310"
+        },
+        {
+            "type":"image",
+            "source":"http://placekitten.com/233"
+        },
+        {
+            "type":"image",
+            "source":"http://placekitten.com/310"
+        },
+        {
+            "type":"image",
+            "source":"http://placekitten.com/233"
+        },
+        {
+            "type":"image",
+            "source":"http://placekitten.com/310"
+        },
+        {
+            "type":"image",
+            "source":"http://placekitten.com/233"
+        },
+        {
+            "type":"image",
+            "source":"http://placekitten.com/310"
+        },
+        {
+            "type":"image",
+            "source":"http://placekitten.com/233"
+        },
+        {
+            "type":"image",
+            "source":"http://placekitten.com/310"
+        },
+        {
+            "type":"image",
+            "source":"http://placekitten.com/233"
+        },
+        {
+            "type":"image",
+            "source":"http://placekitten.com/310"
+        },
+        {
+            "type":"image",
+            "source":"http://placekitten.com/233"
+        },
+        {
+            "type":"image",
+            "source":"http://placekitten.com/310"
+        },
+    ]
     
-    function catImage(n) {
-        var images = [];
-        for (var i = 0; i < n; i++) {
-            images.push($("<img>").attr({
-                "src" : "http://placekitten.com/" + (100 + n)
-            }))
+    function makeItems() {
+        for (var i = 0; i < data.length; i++) {
+            var container = $("<article>");
+            if (data[i].type === "image") {
+                var content = $("<img>").attr({
+                    src: data[i].source
+                })
+            }
+            
+            $("#space").append(container.append(content));
         }
-        return images;
     }
     
-    for (var i = 0; i < cats; i++) {
-        $("#space").append(catImage(cats)[i]);
-        // drag(catImage(cats)[i]);
+    for (var i = 0; i < data.length; i++) {
     }
-    
+    makeItems();
     drag();
 })
 
 function drag() {
     var drag, dragged;
     
-    var item = $("img");
+    var item = $("article");
         
     $(item).mousedown(function(event){
         drag = true;
