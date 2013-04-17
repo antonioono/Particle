@@ -95,6 +95,7 @@ function drag() {
                 top:  event.pageY,
                 left: event.pageX
             })
+        snap(dragged);
         }
     })
     
@@ -103,9 +104,31 @@ function drag() {
     })
 }
 
-/*function snap() {
+function snap(item) {
+    var offsets= [];    
+    var offset = {
+        top: $(item).offset().top,
+        left: $(item).offset().left,
+        bottom: $(item).offset().top  + $(item).height(),
+        right: $(item).offset().left + $(item).width()
+    }    
+    $("article").each(function(){
+        var distance = {
+            top: $(this).offset().top,
+            left: $(this).offset().left,
+            bottom: $(this).offset().top  + $(this).height(),
+            right: $(this).offset().left + $(this).width()
+        }
+        offsets.push(distance);
+    })
+    
+    
 // find mouse position
 // find position and dimensions of dragged object
 // if any side is within distance, change position of dragged object
 // if mouse position moves more than distance away from initial snap, unsnap object
-}*/
+}
+
+function isInRange(item, array){
+    
+}
