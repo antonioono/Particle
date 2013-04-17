@@ -102,3 +102,10 @@ function drag() {
         drag = false;
     })
 }
+
+/*function snap() {
+// find mouse position
+// find position and dimensions of dragged object
+// if any side is within distance, change position of dragged object
+// if mouse position moves more than distance away from initial snap, unsnap object
+}*/
