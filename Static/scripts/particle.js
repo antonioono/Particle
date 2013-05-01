@@ -78,64 +78,28 @@ $(document).ready(function(){
 })
 
 function drag() {
-    var dragging, draggedItem;    
+    var isDrag, dragged;
+    
     var item = $("article");
         
     $(item).mousedown(function(event){
-        dragging = true;
-        draggedItem = $(this);
+        isDrag = true;
+        dragged = $(this);
         event.preventDefault();
     })
     
     $(document).mousemove(function(event){
-        if (dragging) {
+        if (isDrag) {
             var offset = $(item).offset();
-            $(draggedItem).offset({
+            $(dragged).offset({
                 top:  event.pageY,
                 left: event.pageX
             })
+        snap(dragged);
         }
     })
     
     $(document).mouseup(function(){
-        dragging = false;
-        snap(draggedItem);
+        isDrag = false;
     })
-}
-
-function snap(item) {
-    isSnapLegal(item);
-}
-
-function isSnapLegal(item) {
-    var d    = item.position(),
-        allD = [];
-    $("article").not(item).each(function(){
-        allD.push($(this).position());
-    })
-    //find top left bottom right cx cy of present objects
-    for (i in allD) {
-        // console.log(allD[0]);
-        comparePos(item.position().top,    allD[i].top, "top",   item);
-        comparePos(item.position().left,   allD[i].left, "left", item);
-        // comparePos(item.position().right,  allD[i].right);
-        // comparePos(item.position().bottom, allD[i].bottom);
-    }
-}
-
-function comparePos(a, b, side, item) {
-    var snapThreshold = 200;
-    // console.log(a, b);
-    //compare distances, if distance < 10px, snap
-    if (Math.abs(a-b) < snapThreshold) {
-        // console.log("snap!");
-        snapAction(b, side, item);
-    }
-}
-
-function snapAction(a, side, item) {
-    //changes top or left or both of selected object
-    console.log(item.position()[side]);
-    item.css(side, a);
-    console.log(item.css(side));
 }
