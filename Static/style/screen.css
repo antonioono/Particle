@@ -89,9 +89,11 @@ body {
 #space article {
   position: absolute;
   padding: .5em;
+  width: 25%;
 }
-/* line 30, ../sass/screen.scss */
+/* line 31, ../sass/screen.scss */
 #space img {
   margin: 0;
   padding: 0;
+  width: 100%;
 }
