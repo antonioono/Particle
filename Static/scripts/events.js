@@ -1,86 +1,3 @@
-var dragging;
-
-$(document).ready(function(){
-    // GLOBALS
-    var data = [
-        {
-            "type":"image",
-            "source":"http://placekitten.com/233"
-        },
-        {
-            "type":"image",
-            "source":"http://placekitten.com/310"
-        },
-/*        {
-            "type":"image",
-            "source":"http://placekitten.com/233"
-        },
-        {
-            "type":"image",
-            "source":"http://placekitten.com/310"
-        },
-        {
-            "type":"image",
-            "source":"http://placekitten.com/233"
-        },
-        {
-            "type":"image",
-            "source":"http://placekitten.com/310"
-        },
-        {
-            "type":"image",
-            "source":"http://placekitten.com/233"
-        },
-        {
-            "type":"image",
-            "source":"http://placekitten.com/310"
-        },
-        {
-            "type":"image",
-            "source":"http://placekitten.com/233"
-        },
-        {
-            "type":"image",
-            "source":"http://placekitten.com/310"
-        },
-        {
-            "type":"image",
-            "source":"http://placekitten.com/233"
-        },
-        {
-            "type":"image",
-            "source":"http://placekitten.com/310"
-        },
-        {
-            "type":"image",
-            "source":"http://placekitten.com/233"
-        },
-        {
-            "type":"image",
-            "source":"http://placekitten.com/310"
-        },*/
-    ]
-
-    function makeoffsets() {
-        for (var i = 0; i < data.length; i++) {
-            var container = $("<article>");
-            if (data[i].type === "image") {
-                var content = $("<img>").attr({
-                    src: data[i].source
-                })
-            }
-
-            $("#space").append(container.append(content));
-        }
-    }
-
-    for (var i = 0; i < data.length; i++) {
-    }
-    makeoffsets();
-    drag();
-    pan();
-})
-
 function drag() {
     var draggedItem;    
     var item = $("article");
@@ -127,20 +44,20 @@ function isSnapLegal(item) {
             aHeight = item.outerHeight(true),
             bWidth  = allD[i].outerWidth(true),
             bHeight = allD[i].outerHeight(true);
-            
-        comparePos( aPos.top,                bPos.top,               "top",    item,   0);
-        comparePos( aPos.left,               bPos.left,              "left",   item,   0);
-        comparePos((aPos.top +  aHeight),   (bPos.top  +  bHeight),  "top",    item,   aHeight);
-        comparePos((aPos.left + aWidth),    (bPos.left +  bWidth),   "left",   item,   aWidth);
-        comparePos( aPos.top,               (bPos.top  +  bHeight),  "top",    item,   0);
-        comparePos( aPos.left,              (bPos.left +  bWidth),   "left",   item,   0);
-        comparePos((aPos.top +  aHeight),    bPos.top,               "top",    item,   aHeight);
-        comparePos((aPos.left + aWidth),     bPos.left,              "left",   item,   aWidth);
+
+        comparePos( aPos.top,             bPos.top,            "top",  item, 0);
+        comparePos( aPos.left,            bPos.left,           "left", item, 0);
+        comparePos((aPos.top +  aHeight),(bPos.top  + bHeight),"top",  item, aHeight);
+        comparePos((aPos.left + aWidth), (bPos.left + bWidth), "left", item, aWidth);
+        comparePos( aPos.top,            (bPos.top  + bHeight),"top",  item, 0);
+        comparePos( aPos.left,           (bPos.left + bWidth), "left", item, 0);
+        comparePos((aPos.top +  aHeight), bPos.top,            "top",  item, aHeight);
+        comparePos((aPos.left + aWidth),  bPos.left,           "left", item, aWidth);
     }
 }
 
 function comparePos(a, b, side, item, value) {
-    var snapThreshold = 24;
+    var snapThreshold = 48;
     //console.log(a, b);
     //compare distances, if distance < x, snap
     if (Math.abs(a-b) < snapThreshold) {
@@ -169,7 +86,7 @@ function pan() {
         event.preventDefault();
         //console.log("before", space.offset());
     })
-    
+
     $(document).mousemove(function() {
         var panX = originalX - event.pageX,
             panY = originalY - event.pageY;
@@ -182,7 +99,7 @@ function pan() {
             console.log(panX);
         }
     });
-    
+
     $(document).mouseup(function() {
         top     = space.offset().top;
         left    = space.offset().left;
