@@ -89,7 +89,7 @@ function drag() {
         dragging = true;
         draggedItem = $(this);
         event.preventDefault();
-        console.log("startdrag")
+        //console.log("startdrag")
     })
 
     $(document).mousemove(function(event){
@@ -128,14 +128,14 @@ function isSnapLegal(item) {
             bWidth  = allD[i].outerWidth(true),
             bHeight = allD[i].outerHeight(true);
             
-        comparePos( aPos.top,                bPos.top,               "top",    item,   0);
-        comparePos( aPos.left,               bPos.left,              "left",   item,   0);
-        comparePos((aPos.top +  aHeight),   (bPos.top  +  bHeight),  "top",    item,   aHeight);
-        comparePos((aPos.left + aWidth),    (bPos.left +  bWidth),   "left",   item,   aWidth);
-        comparePos( aPos.top,               (bPos.top  +  bHeight),  "top",    item,   0);
-        comparePos( aPos.left,              (bPos.left +  bWidth),   "left",   item,   0);
-        comparePos((aPos.top +  aHeight),    bPos.top,               "top",    item,   aHeight);
-        comparePos((aPos.left + aWidth),     bPos.left,              "left",   item,   aWidth);
+        comparePos( aPos.top,                bPos.top,               "top",    item,   0);        //top to top
+        comparePos( aPos.left,               bPos.left,              "left",   item,   0);        //left to left
+        comparePos((aPos.top +  aHeight),   (bPos.top  +  bHeight),  "top",    item,   aHeight);  // bottom to bottom
+        comparePos((aPos.left + aWidth),    (bPos.left +  bWidth),   "left",   item,   aWidth);   //right to right
+        comparePos( aPos.top,               (bPos.top  +  bHeight),  "top",    item,   0);        //top to bottom
+        comparePos( aPos.left,              (bPos.left +  bWidth),   "left",   item,   0);        //left to right
+        comparePos((aPos.top +  aHeight),    bPos.top,               "top",    item,   aHeight);  //bottom to top
+        comparePos((aPos.left + aWidth),     bPos.left,              "left",   item,   aWidth);   // right to left
     }
 }
 
@@ -157,7 +157,9 @@ function snapAction(a, side, item) {
 
 function pan() {
     var panning, originalX, originalY,
-        space = $("#space"); // change original to object later
+        space = $("#space"), // change original to object later
+        left  = space.offset().left,
+        top   = space.offset().top;
     //on mousedown trigger panning.  Take x and y of mousedown
     $(document).mousedown(function() {
         originalX = event.pageX;
@@ -168,23 +170,25 @@ function pan() {
     })
     
     $(document).mousemove(function() {
-        var panX  = originalX - event.pageX,
-            panY  = originalY - event.pageY,
-            left  = space.offset().left,
-            top   = space.offset().top,
-            speed = 5;
+        var mouseX = event.pageX,
+            mouseY = event.pageY,
+            panX   = originalX - mouseX,
+            panY   = originalY - mouseY,
+            //left   = space.offset().left,
+            //top    = space.offset().top,
+            speed  = 0.05;
         if (panning && !(dragging)) {
-            console.log(top, left);
+            //console.log(top, "-=", panY, "*", speed);
             space.offset({
-              top  : (top  -= panY)/speed,
-              left : (left -= panX)/speed
+              top  : (top  -= panY) * speed,
+              left : (left -= panX) * speed
             })
-            console.log("during", space.offset());
+        //console.log(space.offset().top);
         }
     });
     
     $(document).mouseup(function() {
-        panning = false;
+        panning   = false;
         //console.log("after", space.offset());
     })
     //wherever mouse x and y go to, add or subtract to all objects in array
