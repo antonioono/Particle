@@ -64,6 +64,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 /* line 3, ../sass/screen.scss */
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* line 8, ../sass/screen.scss */
 body {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -73,18 +79,18 @@ body {
   user-select: none;
 }
 
-/* line 12, ../sass/screen.scss */
+/* line 20, ../sass/screen.scss */
 #space {
   position: absolute;
   height: 100%;
   width: 100%;
 }
-/* line 17, ../sass/screen.scss */
+/* line 25, ../sass/screen.scss */
 #space article {
   position: absolute;
   padding: .5em;
 }
-/* line 22, ../sass/screen.scss */
+/* line 30, ../sass/screen.scss */
 #space img {
   margin: 0;
   padding: 0;

@@ -1,5 +1,10 @@
 @import "compass/reset";
 
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
 body {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -7,6 +12,9 @@ body {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+#container {
 }
 
 #space {

@@ -67,9 +67,7 @@ function comparePos(a, b, side, item, value) {
 
 function snapAction(a, side, item) {
     //changes top or left or both of selected object
-    //console.log(side, item.position()[side]);
     item.css(side, a);
-    //console.log(item.css(side));
 }
 
 function pan() {
@@ -84,7 +82,6 @@ function pan() {
         originalY = event.pageY;
         panning = true;
         event.preventDefault();
-        //console.log("before", space.offset());
     })
 
     $(document).mousemove(function() {
@@ -95,8 +92,6 @@ function pan() {
               top  : (top  - panY),
               left : (left - panX)
             })
-            // console.log("during", space.offset());
-            console.log(panX);
         }
     });
 
@@ -104,8 +99,24 @@ function pan() {
         top     = space.offset().top;
         left    = space.offset().left;
         panning = false;
-        //console.log("after", space.offset());
     })
     //wherever mouse x and y go to, add or subtract to all objects in array
     //on mouseup trigger isPanning
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// ZOOMING /////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+var zoomMultiple = 1;
+
+$(document).mousewheel(function(event, delta) {
+    console.log(delta);
+    var zoomAmount = (delta * 10);
+    if (zoomMultiple < 0) zoomMultiple = 1;
+    $("#space").css({
+        "-webkit-transform": "scale(" + zoomMultiple + ")"
+    })
+    zoomMultiple += zoomAmount;
+    event.preventDefault();
+});
