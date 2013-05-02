@@ -157,7 +157,10 @@ function snapAction(a, side, item) {
 
 function pan() {
     var panning, originalX, originalY,
-        space = $("#space"); // change original to object later
+        space = $("#space"), // change original to object later
+        top   = space.offset().top,
+        left  = space.offset().left;
+        console.log(top, left);
     //on mousedown trigger panning.  Take x and y of mousedown
     $(document).mousedown(function() {
         originalX = event.pageX;
@@ -168,38 +171,21 @@ function pan() {
     })
     
     $(document).mousemove(function() {
-<<<<<<< HEAD
-<<<<<<< HEAD
-        var mouseX = event.pageX,
-            mouseY = event.pageY,
-            panX   = originalX - mouseX,
-            panY   = originalY - mouseY,
-            left   = space.offset().left,
-            top    = space.offset().top,
-            speed  = 0.5;
-=======
-=======
->>>>>>> parent of 32008aa... exponential pan is working
-        var panX  = originalX - event.pageX,
-            panY  = originalY - event.pageY,
-            left  = space.offset().left,
-            top   = space.offset().top,
-            speed = 5;
-<<<<<<< HEAD
->>>>>>> parent of 32008aa... exponential pan is working
-=======
->>>>>>> parent of 32008aa... exponential pan is working
+        var panX = originalX - event.pageX,
+            panY = originalY - event.pageY;
         if (panning && !(dragging)) {
-            console.log(top, left);
             space.offset({
-              top  : (top  -= panY)/speed,
-              left : (left -= panX)/speed
+              top  : (top  - panY),
+              left : (left - panX)
             })
-            console.log("during", space.offset());
+            // console.log("during", space.offset());
+            console.log(panX);
         }
     });
     
     $(document).mouseup(function() {
+        top     = space.offset().top;
+        left    = space.offset().left;
         panning = false;
         //console.log("after", space.offset());
     })
