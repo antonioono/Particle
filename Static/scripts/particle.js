@@ -169,6 +169,7 @@ function pan() {
     
     $(document).mousemove(function() {
 <<<<<<< HEAD
+<<<<<<< HEAD
         var mouseX = event.pageX,
             mouseY = event.pageY,
             panX   = originalX - mouseX,
@@ -177,11 +178,16 @@ function pan() {
             top    = space.offset().top,
             speed  = 0.5;
 =======
+=======
+>>>>>>> parent of 32008aa... exponential pan is working
         var panX  = originalX - event.pageX,
             panY  = originalY - event.pageY,
             left  = space.offset().left,
             top   = space.offset().top,
             speed = 5;
+<<<<<<< HEAD
+>>>>>>> parent of 32008aa... exponential pan is working
+=======
 >>>>>>> parent of 32008aa... exponential pan is working
         if (panning && !(dragging)) {
             console.log(top, left);
