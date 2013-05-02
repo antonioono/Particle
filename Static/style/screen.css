@@ -65,12 +65,13 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 /* line 3, ../sass/screen.scss */
 article {
+  position: absolute;
   float: left;
   margin: 0;
   padding: 0;
 }
 
-/* line 9, ../sass/screen.scss */
+/* line 10, ../sass/screen.scss */
 img {
   margin: 0;
   padding: 0;

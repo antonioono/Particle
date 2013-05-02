@@ -111,14 +111,20 @@ function isSnapLegal(item) {
     var d    = item.position(),
         allD = [];
     $("article").not(item).each(function(){
-        allD.push($(this).position());
+        allD.push($(this));
     })
     //find top left bottom right cx cy of present objects
     for (i in allD) {
         // console.log(allD[0]);
-        comparePos(item.position().top,    allD[i].top, "top",   item);
-        comparePos(item.position().left,   allD[i].left, "left", item);
-        // comparePos(item.position().right,  allD[i].right);
+        comparePos(item.position().top,  allD[i].position().top, "top",   item);
+        comparePos(item.position().left, allD[i].position().left, "left", item);
+        comparePos((item.position().top + item.outerHeight(true)), (allD[i].position().top + allD[i].outerHeight(true)), "top", item);
+        comparePos((item.position().left + item.outerWidth(true)), (allD[i].position().left + allD[i].outerWidth(true)), "left", item);
+        
+        comparePos(item.position().top,  (allD[i].position().top + allD[i].outerHeight(true)), "top",   item);
+        comparePos(item.position().left, (allD[i].position().left + allD[i].outerWidth(true)), "left", item);
+        comparePos((item.position().top + item.outerHeight(true)), allD[i].position().top, "top", item);
+        comparePos((item.position().left + item.outerWidth(true)), allD[i].position().left, "left", item);
         // comparePos(item.position().bottom, allD[i].bottom);
     }
 }
@@ -126,7 +132,7 @@ function isSnapLegal(item) {
 function comparePos(a, b, side, item) {
     var snapThreshold = 24;
     // console.log(a, b);
-    //compare distances, if distance < 10px, snap
+    //compare distances, if distance < x, snap
     if (Math.abs(a-b) < snapThreshold) {
         // console.log("snap!");
         snapAction(b, side, item);
@@ -135,7 +141,8 @@ function comparePos(a, b, side, item) {
 
 function snapAction(a, side, item) {
     //changes top or left or both of selected object
-    console.log(item.position()[side]);
-    item.css(side, a);
-    console.log(item.css(side));
+    //console.log(side, item.position()[side]);
+    //item.css(side, a);
+    //console.log(item.css(side));
+    console.log("snap!")
 }
