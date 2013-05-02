@@ -116,14 +116,21 @@ function isSnapLegal(item) {
     //find top left bottom right cx cy of present objects
     for (i in allD) {
         // console.log(allD[0]);
-        comparePos(item.position().top,  allD[i].position().top, "top", 0);
-        comparePos(item.position().left, allD[i].position().left, "left", 0);
-        comparePos((item.position().top + item.outerHeight(true)), (allD[i].position().top + allD[i].outerHeight(true)), "top", item, item.outerHeight(true));
-        comparePos((item.position().left + item.outerWidth(true)), (allD[i].position().left + allD[i].outerWidth(true)), "left", item, item.outerWidth(true));
-        comparePos(item.position().top,  (allD[i].position().top + allD[i].outerHeight(true)), "top",   item, 0);
-        comparePos(item.position().left, (allD[i].position().left + allD[i].outerWidth(true)), "left", item, 0);
-        comparePos((item.position().top + item.outerHeight(true)), allD[i].position().top, "top", item, item.outerHeight());
-        comparePos((item.position().left + item.outerWidth(true)), allD[i].position().left, "left", item, item.outerWidth());
+        var aPos = item.position(),
+            bPos = allD[i].position(),
+            aWidth  = item.outerWidth(true),
+            aHeight = item.outerHeight(true),
+            bWidth  = allD[i].outerWidth(true),
+            bHeight = allD[i].outerHeight(true);
+            
+        comparePos( aPos.top,                bPos.top,               "top",    item,   0);
+        comparePos( aPos.left,               bPos.left,              "left",   item,   0);
+        comparePos((aPos.top +  aHeight),   (bPos.top  +  bHeight),  "top",    item,   aHeight);
+        comparePos((aPos.left + aWidth),    (bPos.left +  bWidth),   "left",   item,   aWidth);
+        comparePos( aPos.top,               (bPos.top  +  bHeight),  "top",    item,   0);
+        comparePos( aPos.left,              (bPos.left +  bWidth),   "left",   item,   0);
+        comparePos((aPos.top +  aHeight),    bPos.top,               "top",    item,   aHeight);
+        comparePos((aPos.left + aWidth),     bPos.left,              "left",   item,   aWidth);
     }
 }
 
@@ -132,6 +139,7 @@ function comparePos(a, b, side, item, value) {
     // console.log(a, b);
     //compare distances, if distance < x, snap
     if (Math.abs(a-b) < snapThreshold) {
+        console.log("ITEM0", item);
         snapAction((b - value), side, item);
     }
 }
@@ -139,12 +147,16 @@ function comparePos(a, b, side, item, value) {
 function snapAction(a, side, item) {
     //changes top or left or both of selected object
     //console.log(side, item.position()[side]);
+    console.log("ITEM1", item);
     item.css(side, a);
     //console.log(item.css(side));
 }
 
 function pan() {
     //on mousedown trigger isPanning.  Take x and y of mousedown
+    $(document).mousedown(function() {
+        
+    })
     //wherever mouse x and y go to, add or subtract to all objects in array
     //on mouseup trigger isPanning
 }
