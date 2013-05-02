@@ -78,11 +78,9 @@ body {
   position: absolute;
   height: 100%;
   width: 100%;
-  top: 0;
-  left: 0;
 }
 
-/* line 20, ../sass/screen.scss */
+/* line 18, ../sass/screen.scss */
 article {
   position: absolute;
   float: left;
@@ -91,7 +89,7 @@ article {
   background-color: #efefef;
 }
 
-/* line 28, ../sass/screen.scss */
+/* line 26, ../sass/screen.scss */
 img {
   margin: 0;
   padding: 0;
