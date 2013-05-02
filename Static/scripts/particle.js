@@ -124,7 +124,6 @@ function isSnapLegal(item) {
         comparePos(item.position().left, (allD[i].position().left + allD[i].outerWidth(true)), "left", item, 0);
         comparePos((item.position().top + item.outerHeight(true)), allD[i].position().top, "top", item, item.outerHeight());
         comparePos((item.position().left + item.outerWidth(true)), allD[i].position().left, "left", item, item.outerWidth());
-        // comparePos(item.position().bottom, allD[i].bottom);
     }
 }
 
@@ -133,7 +132,6 @@ function comparePos(a, b, side, item, value) {
     // console.log(a, b);
     //compare distances, if distance < x, snap
     if (Math.abs(a-b) < snapThreshold) {
-        // console.log("snap!");
         snapAction((b - value), side, item);
     }
 }
@@ -143,5 +141,10 @@ function snapAction(a, side, item) {
     //console.log(side, item.position()[side]);
     item.css(side, a);
     //console.log(item.css(side));
-    console.log("snap!")
+}
+
+function pan() {
+    //on mousedown trigger isPanning.  Take x and y of mousedown
+    //wherever mouse x and y go to, add or subtract to all objects in array
+    //on mouseup trigger isPanning
 }
