@@ -116,33 +116,32 @@ function isSnapLegal(item) {
     //find top left bottom right cx cy of present objects
     for (i in allD) {
         // console.log(allD[0]);
-        comparePos(item.position().top,  allD[i].position().top, "top",   item);
-        comparePos(item.position().left, allD[i].position().left, "left", item);
-        comparePos((item.position().top + item.outerHeight(true)), (allD[i].position().top + allD[i].outerHeight(true)), "top", item);
-        comparePos((item.position().left + item.outerWidth(true)), (allD[i].position().left + allD[i].outerWidth(true)), "left", item);
-        
-        comparePos(item.position().top,  (allD[i].position().top + allD[i].outerHeight(true)), "top",   item);
-        comparePos(item.position().left, (allD[i].position().left + allD[i].outerWidth(true)), "left", item);
-        comparePos((item.position().top + item.outerHeight(true)), allD[i].position().top, "top", item);
-        comparePos((item.position().left + item.outerWidth(true)), allD[i].position().left, "left", item);
+        comparePos(item.position().top,  allD[i].position().top, "top", 0);
+        comparePos(item.position().left, allD[i].position().left, "left", 0);
+        comparePos((item.position().top + item.outerHeight(true)), (allD[i].position().top + allD[i].outerHeight(true)), "top", item, item.outerHeight(true));
+        comparePos((item.position().left + item.outerWidth(true)), (allD[i].position().left + allD[i].outerWidth(true)), "left", item, item.outerWidth(true));
+        comparePos(item.position().top,  (allD[i].position().top + allD[i].outerHeight(true)), "top",   item, 0);
+        comparePos(item.position().left, (allD[i].position().left + allD[i].outerWidth(true)), "left", item, 0);
+        comparePos((item.position().top + item.outerHeight(true)), allD[i].position().top, "top", item, item.outerHeight());
+        comparePos((item.position().left + item.outerWidth(true)), allD[i].position().left, "left", item, item.outerWidth());
         // comparePos(item.position().bottom, allD[i].bottom);
     }
 }
 
-function comparePos(a, b, side, item) {
+function comparePos(a, b, side, item, value) {
     var snapThreshold = 24;
     // console.log(a, b);
     //compare distances, if distance < x, snap
     if (Math.abs(a-b) < snapThreshold) {
         // console.log("snap!");
-        snapAction(b, side, item);
+        snapAction((b - value), side, item);
     }
 }
 
 function snapAction(a, side, item) {
     //changes top or left or both of selected object
     //console.log(side, item.position()[side]);
-    //item.css(side, a);
+    item.css(side, a);
     //console.log(item.css(side));
     console.log("snap!")
 }
