@@ -64,14 +64,34 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 /* line 3, ../sass/screen.scss */
+body {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* line 12, ../sass/screen.scss */
+#space {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+/* line 20, ../sass/screen.scss */
 article {
   position: absolute;
   float: left;
   margin: 0;
-  padding: 0;
+  padding: 0.5em;
+  background-color: #efefef;
 }
 
-/* line 10, ../sass/screen.scss */
+/* line 28, ../sass/screen.scss */
 img {
   margin: 0;
   padding: 0;

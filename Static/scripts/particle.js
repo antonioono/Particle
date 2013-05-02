@@ -174,9 +174,9 @@ function pan() {
             mouseY = event.pageY,
             panX   = originalX - mouseX,
             panY   = originalY - mouseY,
-            //left   = space.offset().left,
-            //top    = space.offset().top,
-            speed  = 0.05;
+            left   = space.offset().left,
+            top    = space.offset().top,
+            speed  = 0.5;
         if (panning && !(dragging)) {
             //console.log(top, "-=", panY, "*", speed);
             space.offset({
