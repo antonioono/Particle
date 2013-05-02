@@ -1,4 +1,7 @@
+var dragging;
+
 $(document).ready(function(){
+    // GLOBALS
     var data = [
         {
             "type":"image",
@@ -75,16 +78,18 @@ $(document).ready(function(){
     }
     makeoffsets();
     drag();
+    pan();
 })
 
 function drag() {
-    var dragging, draggedItem;    
+    var draggedItem;    
     var item = $("article");
 
     $(item).mousedown(function(event){
         dragging = true;
         draggedItem = $(this);
         event.preventDefault();
+        console.log("startdrag")
     })
 
     $(document).mousemove(function(event){
@@ -98,8 +103,8 @@ function drag() {
     })
 
     $(document).mouseup(function(){
+        if (dragging) snap(draggedItem);
         dragging = false;
-        snap(draggedItem);
     })
 }
 
@@ -136,10 +141,9 @@ function isSnapLegal(item) {
 
 function comparePos(a, b, side, item, value) {
     var snapThreshold = 24;
-    // console.log(a, b);
+    //console.log(a, b);
     //compare distances, if distance < x, snap
     if (Math.abs(a-b) < snapThreshold) {
-        console.log("ITEM0", item);
         snapAction((b - value), side, item);
     }
 }
@@ -147,15 +151,41 @@ function comparePos(a, b, side, item, value) {
 function snapAction(a, side, item) {
     //changes top or left or both of selected object
     //console.log(side, item.position()[side]);
-    console.log("ITEM1", item);
     item.css(side, a);
     //console.log(item.css(side));
 }
 
 function pan() {
-    //on mousedown trigger isPanning.  Take x and y of mousedown
+    var panning, originalX, originalY,
+        space = $("#space"); // change original to object later
+    //on mousedown trigger panning.  Take x and y of mousedown
     $(document).mousedown(function() {
-        
+        originalX = event.pageX;
+        originalY = event.pageY;
+        panning = true;
+        event.preventDefault();
+        //console.log("before", space.offset());
+    })
+    
+    $(document).mousemove(function() {
+        var panX  = originalX - event.pageX,
+            panY  = originalY - event.pageY,
+            left  = space.offset().left,
+            top   = space.offset().top,
+            speed = 5;
+        if (panning && !(dragging)) {
+            console.log(top, left);
+            space.offset({
+              top  : (top  -= panY)/speed,
+              left : (left -= panX)/speed
+            })
+            console.log("during", space.offset());
+        }
+    });
+    
+    $(document).mouseup(function() {
+        panning = false;
+        //console.log("after", space.offset());
     })
     //wherever mouse x and y go to, add or subtract to all objects in array
     //on mouseup trigger isPanning
