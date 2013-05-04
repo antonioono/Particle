@@ -9,7 +9,7 @@ $(document).ready(function(){
         },
         {
             "type":"image",
-            "source":"http://placekitten.com/310"
+            "source":"http://placekitten.com/310/500"
         },
         {
             "type":"image",
@@ -17,7 +17,7 @@ $(document).ready(function(){
         },
         {
             "type":"image",
-            "source":"http://placekitten.com/310"
+            "source":"http://placekitten.com/310/500"
         },
 /*        {
             "type":"image",
@@ -25,7 +25,7 @@ $(document).ready(function(){
         },
         {
             "type":"image",
-            "source":"http://placekitten.com/310"
+            "source":"http://placekitten.com/310/500"
         },
         {
             "type":"image",
@@ -33,7 +33,7 @@ $(document).ready(function(){
         },
         {
             "type":"image",
-            "source":"http://placekitten.com/310"
+            "source":"http://placekitten.com/310/500"
         },
         {
             "type":"image",
@@ -41,7 +41,7 @@ $(document).ready(function(){
         },
         {
             "type":"image",
-            "source":"http://placekitten.com/310"
+            "source":"http://placekitten.com/310/500"
         },
         {
             "type":"image",
@@ -49,7 +49,7 @@ $(document).ready(function(){
         },
         {
             "type":"image",
-            "source":"http://placekitten.com/310"
+            "source":"http://placekitten.com/310/500"
         },
         {
             "type":"image",
@@ -57,7 +57,7 @@ $(document).ready(function(){
         },
         {
             "type":"image",
-            "source":"http://placekitten.com/310"
+            "source":"http://placekitten.com/310/500"
         },*/
     ]
 

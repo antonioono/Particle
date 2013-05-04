@@ -10,11 +10,15 @@ function drag() {
     })
 
     $(document).mousemove(function(event){
+        var container = $(".space");
         if (dragging) {
-            var offset = $(item).offset();
-            $(draggedItem).offset({
-                top:  event.pageY,
-                left: event.pageX
+            var percent = {
+                    "y" : event.pageY / container.height() * 100 + "%",
+                    "x" : event.pageX / container.width()  * 100 + "%"
+                };
+            $(draggedItem).css({
+                top:  percent.y,
+                left: percent.x
             })
         }
     })
@@ -57,17 +61,25 @@ function isSnapLegal(item) {
 }
 
 function comparePos(a, b, side, item, value) {
-    var snapThreshold = 48;
-    //console.log(a, b);
+    var threshold = 4,
+        container = $(".space"),
+        a = (side === "top")
+                    ? a / container.height() * 100
+                    : a / container.width()  * 100;
+        b = (side === "top")
+                    ? b / container.height() * 100
+                    : b / container.width()  * 100;
     //compare distances, if distance < x, snap
-    if (Math.abs(a-b) < snapThreshold) {
+    console.log(a, b)
+    if (Math.abs(a-b) < threshold) {
         snapAction((b - value), side, item);
     }
 }
 
 function snapAction(a, side, item) {
     //changes top or left or both of selected object
-    item.css(side, a);
+    // console.log(a);
+    item.css(side, a + "%");
 }
 
 function pan() {
@@ -75,7 +87,6 @@ function pan() {
         space = $(".space"), // change original to object later
         top   = space.offset().top,
         left  = space.offset().left;
-        console.log(top, left);
     //on mousedown trigger panning.  Take x and y of mousedown
     $(document).mousedown(function() {
         originalX = event.pageX;
@@ -113,7 +124,6 @@ var zoomMultiple = 1;
 $(document).mousewheel(function(event, delta) {
     var zoomAmount = (delta / 16) + 1;
     // if (zoomMultiple < 0) zoomMultiple = 1;
-    console.log(zoomAmount);
     var d = {
         "width"  : $(".space").width(),
         "height" : $(".space").height()
