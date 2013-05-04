@@ -30,47 +30,55 @@ function drag() {
 }
 
 function snap(item) {
-    isSnapLegal(item);
-}
-
-function isSnapLegal(item) {
     var d    = item.position(),
         allD = [];
     $("article").not(item).each(function(){
         allD.push($(this));
     })
     //find top left bottom right cx cy of present objects
+    
+    var container = $(".space");
+    // var percent = (side === "top")
+    //               ? a / container.height() * 100 + "%"
+    //               : a / container.width()  * 100 + "%";
+    
     for (i in allD) {
-        // console.log(allD[0]);
-        var aPos = item.position(),
-            bPos = allD[i].position(),
-            aWidth  = item.outerWidth(true),
-            aHeight = item.outerHeight(true),
-            bWidth  = allD[i].outerWidth(true),
-            bHeight = allD[i].outerHeight(true);
+        var a = {
+            "pos" : {
+                "top"    : item.position().top,
+                "left"   : item.position().left,
+                "bottom" : item.position().top  + item.outerHeight(true),
+                "right"  : item.position().left + item.outerWidth(true)
+            },
+            "height" : item.outerHeight(true),
+            "width"  : item.outerWidth(true)
+        }
+        var b = {
+            "pos" : {
+                "top"    : allD[i].position().top,
+                "left"   : allD[i].position().left,
+                "bottom" : allD[i].position().top  + allD[i].outerHeight(true),
+                "right"  : allD[i].position().left + allD[i].outerWidth(true)
+            },
+            // Height and width not needed
+            "height" : allD[i].outerHeight(true),
+            "width"  : allD[i].outerWidth(true)       
+        }
 
-        comparePos( aPos.top,             bPos.top,            "top",  item, 0);
-        comparePos( aPos.left,            bPos.left,           "left", item, 0);
-        comparePos((aPos.top +  aHeight),(bPos.top  + bHeight),"top",  item, aHeight);
-        comparePos((aPos.left + aWidth), (bPos.left + bWidth), "left", item, aWidth);
-        comparePos( aPos.top,            (bPos.top  + bHeight),"top",  item, 0);
-        comparePos( aPos.left,           (bPos.left + bWidth), "left", item, 0);
-        comparePos((aPos.top +  aHeight), bPos.top,            "top",  item, aHeight);
-        comparePos((aPos.left + aWidth),  bPos.left,           "left", item, aWidth);
+        comparePos(a.pos.top,    b.pos.top,    "top",  item, 0);
+        comparePos(a.pos.left,   b.pos.left,   "left", item, 0);
+        comparePos(a.pos.bottom, b.pos.bottom, "top",  item, a.height);
+        comparePos(a.pos.right,  b.pos.right,  "left", item, a.width);
+        comparePos(a.pos.top,    b.pos.bottom, "top",  item, 0);
+        comparePos(a.pos.left,   b.pos.right,  "left", item, 0);
+        comparePos(a.pos.bottom, b.pos.top,    "top",  item, a.height);
+        comparePos(a.pos.right,  b.pos.left,   "left", item, a.width);
     }
 }
 
 function comparePos(a, b, side, item, value) {
-    var threshold = 4,
-        container = $(".space"),
-        a = (side === "top")
-                    ? a / container.height() * 100
-                    : a / container.width()  * 100;
-        b = (side === "top")
-                    ? b / container.height() * 100
-                    : b / container.width()  * 100;
+    var threshold = 48;
     //compare distances, if distance < x, snap
-    console.log(a, b)
     if (Math.abs(a-b) < threshold) {
         snapAction((b - value), side, item);
     }
@@ -78,8 +86,8 @@ function comparePos(a, b, side, item, value) {
 
 function snapAction(a, side, item) {
     //changes top or left or both of selected object
-    // console.log(a);
-    item.css(side, a + "%");
+    console.log("asdfasdf");
+    item.css(side, a);
 }
 
 function pan() {
@@ -87,6 +95,7 @@ function pan() {
         space = $(".space"), // change original to object later
         top   = space.offset().top,
         left  = space.offset().left;
+        
     //on mousedown trigger panning.  Take x and y of mousedown
     $(document).mousedown(function() {
         originalX = event.pageX;
