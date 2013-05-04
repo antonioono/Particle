@@ -37,32 +37,32 @@ function snap(item) {
     })
     //find top left bottom right cx cy of present objects
     
-    var container = $(".space");
-    // var percent = (side === "top")
-    //               ? a / container.height() * 100 + "%"
-    //               : a / container.width()  * 100 + "%";
+    var space = {
+        "h": $(".space").height(),
+        "w": $(".space").width()
+    };
     
     for (i in allD) {
         var a = {
             "pos" : {
-                "top"    : item.position().top,
-                "left"   : item.position().left,
-                "bottom" : item.position().top  + item.outerHeight(true),
-                "right"  : item.position().left + item.outerWidth(true)
+                "top"    : item.position().top  / space.h*100,
+                "left"   : item.position().left / space.w*100,
+                "bottom" :(item.position().top+item.outerHeight(true))/space.h*100,
+                "right"  :(item.position().left+item.outerWidth(true))/space.w*100
             },
-            "height" : item.outerHeight(true),
-            "width"  : item.outerWidth(true)
+            "height" : item.outerHeight(true) / space.h*100,
+            "width"  : item.outerWidth(true)  / space.w*100
         }
         var b = {
             "pos" : {
-                "top"    : allD[i].position().top,
-                "left"   : allD[i].position().left,
-                "bottom" : allD[i].position().top  + allD[i].outerHeight(true),
-                "right"  : allD[i].position().left + allD[i].outerWidth(true)
+                "top"    : allD[i].position().top  / space.h*100,
+                "left"   : allD[i].position().left / space.w*100,
+                "bottom" :(allD[i].position().top+allD[i].outerHeight(true))/space.h*100,
+                "right"  :(allD[i].position().left+allD[i].outerWidth(true))/space.w*100
             },
             // Height and width not needed
-            "height" : allD[i].outerHeight(true),
-            "width"  : allD[i].outerWidth(true)       
+            "height" : allD[i].outerHeight(true) / space.h*100,
+            "width"  : allD[i].outerWidth(true)  / space.w*100
         }
 
         comparePos(a.pos.top,    b.pos.top,    "top",  item, 0);
@@ -77,7 +77,8 @@ function snap(item) {
 }
 
 function comparePos(a, b, side, item, value) {
-    var threshold = 48;
+    var threshold = 10;
+    console.log(a, b)
     //compare distances, if distance < x, snap
     if (Math.abs(a-b) < threshold) {
         snapAction((b - value), side, item);
@@ -86,8 +87,7 @@ function comparePos(a, b, side, item, value) {
 
 function snapAction(a, side, item) {
     //changes top or left or both of selected object
-    console.log("asdfasdf");
-    item.css(side, a);
+    item.css(side, a + "%");
 }
 
 function pan() {
