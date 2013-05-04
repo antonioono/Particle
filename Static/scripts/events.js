@@ -111,12 +111,21 @@ function pan() {
 var zoomMultiple = 1;
 
 $(document).mousewheel(function(event, delta) {
-    console.log(delta);
-    var zoomAmount = (delta * 10);
-    if (zoomMultiple < 0) zoomMultiple = 1;
+    var zoomAmount = (delta);
+    // if (zoomMultiple < 0) zoomMultiple = 1;
+    console.log(zoomMultiple);
+    var d = {
+        "width"  : $("#space").width(),
+        "height" : $("#space").height()
+    };
     $("#space").css({
-        "-webkit-transform": "scale(" + zoomMultiple + ")"
+        // "-webkit-transform": "scale(" + zoomMultiple + ")"
+        "width"  : d.width  += zoomMultiple,
+        "height" : d.height += zoomMultiple,
+        "top"    : -zoomMultiple / 2,
+        "left"   : -zoomMultiple / 2
     })
+    var oldZoom = zoomMultiple;
     zoomMultiple += zoomAmount;
     event.preventDefault();
 });
