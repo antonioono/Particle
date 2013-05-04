@@ -80,21 +80,22 @@ body {
 }
 
 /* line 20, ../sass/screen.scss */
-#space {
+.space {
+  background: red;
   position: absolute;
   height: 100%;
   width: 100%;
   top: 0;
   left: 0;
 }
-/* line 26, ../sass/screen.scss */
-#space article {
+/* line 27, ../sass/screen.scss */
+.space article {
   position: absolute;
   padding: .5em;
   width: 25%;
 }
-/* line 32, ../sass/screen.scss */
-#space img {
+/* line 33, ../sass/screen.scss */
+.space img {
   margin: 0;
   padding: 0;
   width: 100%;

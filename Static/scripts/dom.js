@@ -70,7 +70,7 @@ $(document).ready(function(){
                 })
             }
 
-            $("#space").append(container.append(content));
+            $(".space").append(container.append(content));
         }
     }
 

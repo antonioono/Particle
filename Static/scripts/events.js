@@ -72,7 +72,7 @@ function snapAction(a, side, item) {
 
 function pan() {
     var panning, originalX, originalY,
-        space = $("#space"), // change original to object later
+        space = $(".space"), // change original to object later
         top   = space.offset().top,
         left  = space.offset().left;
         console.log(top, left);
@@ -111,22 +111,20 @@ function pan() {
 var zoomMultiple = 1;
 
 $(document).mousewheel(function(event, delta) {
-    var zoomAmount = (delta);
+    var zoomAmount = (delta / 16) + 1;
     // if (zoomMultiple < 0) zoomMultiple = 1;
-    console.log(zoomMultiple);
+    console.log(zoomAmount);
     var d = {
-        "width"  : $("#space").width(),
-        "height" : $("#space").height()
+        "width"  : $(".space").width(),
+        "height" : $(".space").height()
     };
-    $("#space").css({
+    $(".space").css({
         // "-webkit-transform": "scale(" + zoomMultiple + ")"
-        "width"  : d.width  += zoomMultiple,
-        "height" : d.height += zoomMultiple,
-        "top"    : -zoomMultiple / 2,
-        "left"   : -zoomMultiple / 2
-    })
-    var oldZoom = zoomMultiple;
-    zoomMultiple += zoomAmount;
+        "width"  : d.width  * zoomAmount,
+        "height" : d.height * zoomAmount
+    });
+    // zoomMultiple += zoomAmount;
+    // var oldZoom = zoomMultiple;
     event.preventDefault();
 });
 

@@ -14,10 +14,11 @@ body {
     user-select: none;
 }
 
-#container {
+.container {
 }
 
-#space {
+.space {
+    background: red;
     position: absolute;
     height: 100%;
     width:  100%;
