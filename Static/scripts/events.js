@@ -6,7 +6,6 @@ function drag() {
         dragging = true;
         draggedItem = $(this);
         event.preventDefault();
-        console.log("startdrag")
     })
 
     $(document).mousemove(function(event){
@@ -78,7 +77,7 @@ function snap(item) {
 
 function comparePos(a, b, side, item, value) {
     var threshold = 10;
-    console.log(a, b)
+
     //compare distances, if distance < x, snap
     if (Math.abs(a-b) < threshold) {
         snapAction((b - value), side, item);
@@ -87,6 +86,8 @@ function comparePos(a, b, side, item, value) {
 
 function snapAction(a, side, item) {
     //changes top or left or both of selected object
+    console.log(a);
+
     item.css(side, a + "%");
 }
 
