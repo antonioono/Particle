@@ -64,14 +64,14 @@ function snap(item) {
             "width"  : allD[i].outerWidth(true)  / space.w*100
         }
 
-        comparePos(a.pos.top,    b.pos.top,    "top",  item, 0);
-        comparePos(a.pos.left,   b.pos.left,   "left", item, 0);
-        comparePos(a.pos.bottom, b.pos.bottom, "top",  item, a.height);
-        comparePos(a.pos.right,  b.pos.right,  "left", item, a.width);
-        comparePos(a.pos.top,    b.pos.bottom, "top",  item, 0);
-        comparePos(a.pos.left,   b.pos.right,  "left", item, 0);
-        comparePos(a.pos.bottom, b.pos.top,    "top",  item, a.height);
-        comparePos(a.pos.right,  b.pos.left,   "left", item, a.width);
+        comparePos(a.pos.top,    b.pos.top,    "top",  item, 0); // top to top
+        comparePos(a.pos.left,   b.pos.left,   "left", item, 0); // left to left
+        comparePos(a.pos.bottom, b.pos.bottom, "top",  item, a.height); // bottom to bottom
+        comparePos(a.pos.right,  b.pos.right,  "left", item, a.width); // right to right
+        comparePos(a.pos.top,    b.pos.bottom, "top",  item, 0); // top to bottom
+        comparePos(a.pos.left,   b.pos.right,  "left", item, 0); // left to right
+        comparePos(a.pos.bottom, b.pos.top,    "top",  item, a.height); // bottom to top
+        comparePos(a.pos.right,  b.pos.left,   "left", item, a.width); // right to left
     }
 }
 
