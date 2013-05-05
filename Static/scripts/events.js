@@ -85,8 +85,6 @@ function comparePos(a, b, side, item, value) {
 
 function snapAction(a, side, item) {
     //changes top or left or both of selected object
-    console.log(a);
-
     item.css(side, a + "%");
 }
 
