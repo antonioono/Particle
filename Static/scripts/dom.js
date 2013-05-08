@@ -1,7 +1,4 @@
-var dragging;
-
 $(document).ready(function(){
-    // GLOBALS
     var data = [
         {
             "type":"image",
@@ -18,64 +15,24 @@ $(document).ready(function(){
         {
             "type":"image",
             "source":"http://placekitten.com/310/500"
-        },
-/*        {
-            "type":"image",
-            "source":"http://placekitten.com/233"
-        },
-        {
-            "type":"image",
-            "source":"http://placekitten.com/310/500"
-        },
-        {
-            "type":"image",
-            "source":"http://placekitten.com/233"
-        },
-        {
-            "type":"image",
-            "source":"http://placekitten.com/310/500"
-        },
-        {
-            "type":"image",
-            "source":"http://placekitten.com/233"
-        },
-        {
-            "type":"image",
-            "source":"http://placekitten.com/310/500"
-        },
-        {
-            "type":"image",
-            "source":"http://placekitten.com/233"
-        },
-        {
-            "type":"image",
-            "source":"http://placekitten.com/310/500"
-        },
-        {
-            "type":"image",
-            "source":"http://placekitten.com/233"
-        },
-        {
-            "type":"image",
-            "source":"http://placekitten.com/310/500"
-        },*/
+        }
     ]
 
     function makeoffsets() {
-        for (var i = 0; i < data.length; i++) {
+        for (i in data) {
             var container = $("<article>");
+            container.attr({
+                "class" : "heyman"
+            });
             if (data[i].type === "image") {
                 var content = $("<img>").attr({
                     src: data[i].source
                 })
             }
-
             $(".space").append(container.append(content));
         }
     }
-
-    for (var i = 0; i < data.length; i++) {
-    }
+    
     makeoffsets();
     drag();
     pan();

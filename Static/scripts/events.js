@@ -1,3 +1,5 @@
+var dragging;
+
 function drag() {
     var draggedItem;    
     var item = $("article");
@@ -19,7 +21,6 @@ function drag() {
                     "y" : (((event.pageY - containerOffset.top)  / container.height()) * 100) + "%",
                     "x" : (((event.pageX - containerOffset.left) / container.width())  * 100) + "%"
                 };
-            console.log(event.pageX, event.pageY, percent)
             $(draggedItem).css({
                 top:  percent.y,
                 left: percent.x
@@ -132,8 +133,10 @@ function pan() {
 ////////////////////////////////////////////////////////////////////////////////
 
 var zoomMultiple = 1;
+var zoomLevel = 0;
 
 $(document).mousewheel(function(event, delta) {
+    console.log(zoomLevel)
     var zoomAmount = (delta / 16) + 1;
     // if (zoomMultiple < 0) zoomMultiple = 1;
     var d = {
@@ -147,11 +150,17 @@ $(document).mousewheel(function(event, delta) {
     });
     // zoomMultiple += zoomAmount;
     // var oldZoom = zoomMultiple;
+    zoomLevel += delta;
     event.preventDefault();
+    merp();
 });
 
 ////////////////////////////////////////////////////////////////////////////////
 // CLUMPING ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-//merp
+function detectLevel() {
+    $("<article>").each(function() {
+        console.log($(this).attr("class"));
+    });
+}
