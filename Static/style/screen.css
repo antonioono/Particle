@@ -81,20 +81,19 @@ body {
 
 /* line 20, ../sass/screen.scss */
 .space {
-  background: red;
   position: absolute;
   height: 100%;
   width: 100%;
   top: 0;
   left: 0;
 }
-/* line 27, ../sass/screen.scss */
+/* line 26, ../sass/screen.scss */
 .space article {
   position: absolute;
   padding: 1%;
   width: 25%;
 }
-/* line 33, ../sass/screen.scss */
+/* line 32, ../sass/screen.scss */
 .space img {
   margin: 0;
   padding: 0;
