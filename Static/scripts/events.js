@@ -10,16 +10,11 @@ function drag() {
 
     $(document).mousemove(function(event){
         var container = $(".space");
-            containerOffset = {
-                "top":  $(".space").position().top,
-                "left": $(".space").position().left 
-            }
         if (dragging) {
             var percent = {
-                    "y" : (((event.pageY - containerOffset.top)  / container.height()) * 100) + "%",
-                    "x" : (((event.pageX - containerOffset.left) / container.width())  * 100) + "%"
+                    "y" : event.pageY / container.height() * 100 + "%",
+                    "x" : event.pageX / container.width()  * 100 + "%"
                 };
-            console.log(event.pageX, event.pageY, percent)
             $(draggedItem).css({
                 top:  percent.y,
                 left: percent.x
@@ -96,8 +91,8 @@ function snapAction(a, side, item) {
 function pan() {
     var panning, originalX, originalY,
         space = $(".space"), // change original to object later
-        top   = space.position().top,
-        left  = space.position().left;
+        top   = space.offset().top,
+        left  = space.offset().left;
         
     //on mousedown trigger panning.  Take x and y of mousedown
     $(document).mousedown(function() {
@@ -111,7 +106,7 @@ function pan() {
         var panX = originalX - event.pageX,
             panY = originalY - event.pageY;
         if (panning && !(dragging)) {
-            space.css({
+            space.offset({
               top  : (top  - panY),
               left : (left - panX)
             })
@@ -119,8 +114,8 @@ function pan() {
     });
 
     $(document).mouseup(function() {
-        top     = space.position().top;
-        left    = space.position().left;
+        top     = space.offset().top;
+        left    = space.offset().left;
         panning = false;
     })
     //wherever mouse x and y go to, add or subtract to all objects in array
