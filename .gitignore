@@ -1,2 +1,6 @@
 
 .DS_Store
+
+*.scssc
+
+Static/.sass-cache/1cb24631e72f2d09b212c7f4d6e7701234ce6b39/screen.scssc

@@ -1,4 +1,4 @@
-@import "compass/reset";
+@import "_boilerplate.scss";
 
 html, body {
   height: 100%;
@@ -24,10 +24,22 @@ body {
     top:  0;
     left: 0;
     
+    &:hover {
+        cursor: move;
+    }
+    
     article {
         position: absolute;
         padding: 1%;
         width: 25%;
+        
+        &.dragging {
+            opacity: .5;
+        }
+        
+        &.dropped {
+            @include transition(all .125s cubic-bezier(0.19, 1, 0.22, 1))
+        }
     }
     
     img {     

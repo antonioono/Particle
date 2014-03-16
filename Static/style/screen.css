@@ -87,13 +87,28 @@ body {
   top: 0;
   left: 0;
 }
-/* line 26, ../sass/screen.scss */
+/* line 27, ../sass/screen.scss */
+.space:hover {
+  cursor: move;
+}
+/* line 31, ../sass/screen.scss */
 .space article {
   position: absolute;
   padding: 1%;
   width: 25%;
 }
-/* line 32, ../sass/screen.scss */
+/* line 36, ../sass/screen.scss */
+.space article.dragging {
+  opacity: .5;
+}
+/* line 40, ../sass/screen.scss */
+.space article.dropped {
+  -webkit-transition: all 0.125s cubic-bezier(0.19, 1, 0.22, 1);
+  -moz-transition: all 0.125s cubic-bezier(0.19, 1, 0.22, 1);
+  -o-transition: all 0.125s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: all 0.125s cubic-bezier(0.19, 1, 0.22, 1);
+}
+/* line 45, ../sass/screen.scss */
 .space img {
   margin: 0;
   padding: 0;

@@ -1,6 +1,12 @@
 var dragging;
 
 function drag() {
+    var container = $(".space"),
+        containerOffset = {
+            "top":  $(".space").position().top,
+            "left": $(".space").position().left 
+        };
+        
     var draggedItem,    
         item = $("article");
 
@@ -11,11 +17,6 @@ function drag() {
     })
 
     $(document).mousemove(function(event){
-        var container = $(".space"),
-            containerOffset = {
-                "top":  $(".space").position().top,
-                "left": $(".space").position().left 
-            };
         if (dragging) {
             var percent = {
                     "y" : (((event.pageY - containerOffset.top)  / container.height()) * 100) + "%",
@@ -25,16 +26,21 @@ function drag() {
                 top:  percent.y,
                 left: percent.x
             })
+            
+            $(draggedItem).addClass("dragging");
         }
     })
 
     $(document).mouseup(function(){
         if (dragging) snap(draggedItem);
         dragging = false;
+        $(draggedItem).removeClass("dragging");
     })
 }
 
 function snap(item) {
+    $(item).addClass("dropped");
+
     var d    = item.position(),
         allD = [];
     $("article").not(item).each(function(){
@@ -78,6 +84,9 @@ function snap(item) {
         comparePos(a.pos.bottom, b.pos.bottom, "top",  item, a.height); // bottom to bottom
         comparePos(a.pos.top,    b.pos.top,    "top",  item, 0); // top to top
     }
+    setTimeout(function(){
+        $(item).removeClass("dropped")
+    }, 250);
 }
 
 function comparePos(a, b, side, item, value) {
