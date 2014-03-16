@@ -1,8 +1,8 @@
 var dragging;
 
 function drag() {
-    var draggedItem;    
-    var item = $("article");
+    var draggedItem,    
+        item = $("article");
 
     $(item).mousedown(function(event){
         dragging = true;
@@ -11,11 +11,11 @@ function drag() {
     })
 
     $(document).mousemove(function(event){
-        var container = $(".space");
+        var container = $(".space"),
             containerOffset = {
                 "top":  $(".space").position().top,
                 "left": $(".space").position().left 
-            }
+            };
         if (dragging) {
             var percent = {
                     "y" : (((event.pageY - containerOffset.top)  / container.height()) * 100) + "%",
@@ -95,8 +95,8 @@ function snapAction(a, side, item) {
 }
 
 function pan() {
-    var panning, originalX, originalY,
-        space = $(".space"), // change original to object later
+    var panning, originalX, originalY, // change original to object later
+        space = $(".space"),
         top   = space.position().top,
         left  = space.position().left;
         
